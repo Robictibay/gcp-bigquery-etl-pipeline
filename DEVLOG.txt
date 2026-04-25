@@ -1,0 +1,92 @@
+=========================================================
+DEVELOPER LOG - GCP BIGQUERY ETL PIPELINE
+Author: Rafael Angelo S. Tibayan
+=========================================================
+
+[2026-04-25] Phase 3: GCP BigQuery ETL Pipeline - Core Pipeline Complete
+---------------------------------------------------------
+
+Goal:
+Build a beginner cloud data engineering portfolio project that moves transaction data from local Python processing into Google Cloud Storage and BigQuery for SQL-based analytics.
+
+Work completed:
+- Created a new GCP project: rafael-phase3-etl-2026.
+- Enabled Cloud Storage and BigQuery APIs.
+- Linked the project to an active billing account.
+- Created a local project folder: gcp-bigquery-etl-pipeline.
+- Created a Python virtual environment.
+- Installed pandas and pyarrow.
+- Created the following folder structure:
+  - data/raw
+  - data/processed
+  - scripts
+  - sql
+  - screenshots
+  - reports
+
+Data generation:
+- Built scripts/generate_sample_data.py.
+- Generated 5,150 synthetic transaction records.
+- Included transaction date, client ID, category, status, and amount fields.
+- Injected a deliberate anomaly for Client_1004 in the E-commerce category on 2026-03-15.
+
+Data transformation:
+- Built scripts/transform.py.
+- Cleaned transaction dates and numeric amount fields.
+- Dropped invalid records.
+- Added boolean helper fields:
+  - is_success
+  - is_failed
+  - is_refunded
+- Exported cleaned data to data/processed/transactions_clean.csv.
+
+Cloud Storage:
+- Created Cloud Storage bucket:
+  - rafael-phase3-etl-2026-etl-bucket
+- Uploaded cleaned CSV to:
+  - gs://rafael-phase3-etl-2026-etl-bucket/processed/transactions_clean.csv
+- Verified upload using gcloud storage ls.
+
+BigQuery:
+- Created BigQuery dataset:
+  - phase3_etl
+- Loaded cleaned CSV into BigQuery table:
+  - phase3_etl.transactions
+- Verified table creation using bq ls.
+- Previewed table rows using bq head.
+
+SQL analytics:
+- Created sql/kpi_queries.sql.
+- Created sql/anomaly_queries.sql.
+- Ran a revenue-by-category query successfully.
+- Ran anomaly detection successfully.
+- The anomaly query correctly flagged:
+  - Date: 2026-03-15
+  - Client: Client_1004
+  - Category: E-commerce
+  - Daily transaction count: 151
+
+Important issue fixed:
+- Initial Cloud Storage bucket creation failed because billing was not linked to the new GCP project.
+- Billing was linked to the active education billing account.
+- After billing was enabled, bucket creation and file upload succeeded.
+
+PowerShell issue fixed:
+- PowerShell did not accept $PROJECT_ID:$DATASET_ID syntax because the colon confused variable parsing.
+- Fixed by using "${PROJECT_ID}:${DATASET_ID}".
+
+Portfolio value:
+This project demonstrates beginner data engineering skills:
+- ETL pipeline design
+- Python data generation and transformation
+- Google Cloud Storage upload
+- BigQuery table loading
+- SQL KPI reporting
+- SQL anomaly detection
+- gcloud and bq CLI workflow
+
+Current status:
+Core pipeline complete. Remaining work:
+- Add screenshots.
+- Finalize README.
+- Push project to GitHub.
