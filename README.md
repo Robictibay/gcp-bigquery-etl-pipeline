@@ -1,6 +1,6 @@
 # GCP BigQuery ETL Pipeline
 
-A beginner cloud data engineering project — Python-generated transaction data, cleaned and pushed through GCS into BigQuery for SQL-based KPI reporting and anomaly detection.
+A beginner cloud data engineering and BI project that generates synthetic transaction data with Python, stages it in Google Cloud Storage, loads it into BigQuery, runs SQL KPI/anomaly queries, and visualizes the warehouse data in Power BI.
 
 ---
 
@@ -11,14 +11,14 @@ This project simulates a lightweight ETL pipeline for business transaction data.
 The pipeline goes:
 
 ```text
-Python data generation → cleaning/transformation → GCS upload → BigQuery load → SQL analytics
+Python data generation → cleaning/transformation → GCS upload → BigQuery load → SQL analytics → Power BI dashboard
 ```
 
 ---
 
 ## Stack
 
-Python · pandas · Google Cloud Storage · BigQuery · SQL · gcloud CLI · bq CLI · PowerShell
+Python · pandas · Google Cloud Storage · BigQuery · SQL · Power BI · gcloud CLI · bq CLI · PowerShell
 
 ---
 
@@ -26,12 +26,20 @@ Python · pandas · Google Cloud Storage · BigQuery · SQL · gcloud CLI · bq 
 
 ```text
 gcp-bigquery-etl-pipeline/
+├── dashboard/
+│   └── transaction_etl_dashboard.pbix
 ├── data/
 │   ├── raw/
 │   └── processed/
 ├── reports/
 │   └── pipeline_summary.md
 ├── screenshots/
+│   ├── 01_github_repo_home.png
+│   ├── 02_gcs_bucket_file.png
+│   ├── 03_bigquery_table_preview.png
+│   ├── 04_anomaly_query_result.png
+│   ├── 05_powershell_pipeline_complete.png
+│   └── 06_powerbi_dashboard.png
 ├── scripts/
 │   ├── generate_sample_data.py
 │   ├── transform.py
@@ -71,6 +79,14 @@ One anomaly was intentionally injected — **Client_1004**, E-commerce category,
 
 ---
 
+## Power BI Dashboard
+
+A Power BI dashboard was built using the BigQuery `transactions` table as the BI layer. The dashboard includes KPI cards, revenue by category, transaction status distribution, daily transaction volume, and a table surfacing the detected transaction spike.
+
+![Power BI Dashboard](screenshots/06_powerbi_dashboard.png)
+
+---
+
 ## How to Run
 
 ```powershell
@@ -100,5 +116,5 @@ bq head -n 5 "${PROJECT_ID}:${DATASET_ID}.transactions"
 - [x] Loaded into BigQuery
 - [x] Ran KPI queries
 - [x] Ran anomaly detection
-- [ ] Screenshots
-- [ ] Power BI dashboard (planned)
+- [x] Added proof screenshots
+- [x] Built Power BI dashboard connected to BigQuery
