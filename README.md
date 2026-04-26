@@ -1,12 +1,14 @@
 # GCP BigQuery ETL Pipeline
 
-A beginner cloud data engineering and BI project that generates synthetic transaction data with Python, stages it in Google Cloud Storage, loads it into BigQuery, runs SQL KPI/anomaly queries, and visualizes the warehouse data in Power BI.
+A cloud data engineering and BI project that generates synthetic transaction data with Python, stages it in Google Cloud Storage, loads it into BigQuery, runs SQL KPI/anomaly queries, and visualizes the warehouse data in Power BI.
 
 ---
 
 ## Overview
 
 This project simulates a lightweight ETL pipeline for business transaction data. The data is synthetic and portfolio-safe — no real client or financial records involved.
+
+This project demonstrates an end-to-end cloud analytics workflow from data generation to business-facing dashboarding using a modern data stack.
 
 The pipeline goes:
 
@@ -19,6 +21,16 @@ Python data generation → cleaning/transformation → GCS upload → BigQuery l
 ## Stack
 
 Python · pandas · Google Cloud Storage · BigQuery · SQL · Power BI · gcloud CLI · bq CLI · PowerShell
+
+---
+
+## Key Features
+
+- End-to-end automated ETL pipeline using Python and PowerShell
+- Cloud data lake staging via Google Cloud Storage
+- Data warehouse loading and querying in BigQuery
+- SQL-based KPI reporting and anomaly detection
+- Power BI dashboard connected directly to BigQuery
 
 ---
 
@@ -84,6 +96,18 @@ One anomaly was intentionally injected — **Client_1004**, E-commerce category,
 A Power BI dashboard was built using the BigQuery `transactions` table as the BI layer. The dashboard includes KPI cards, revenue by category, transaction status distribution, daily transaction volume, and a table surfacing the detected transaction spike.
 
 ![Power BI Dashboard](screenshots/06_powerbi_dashboard.png)
+
+---
+
+## Screenshots
+
+| Step | Preview |
+|------|---------|
+| GCS Upload | ![](screenshots/02_gcs_bucket_file.png) |
+| BigQuery Table | ![](screenshots/03_bigquery_table_preview.png) |
+| Anomaly Query | ![](screenshots/04_anomaly_query_result.png) |
+| Pipeline Run | ![](screenshots/05_powershell_pipeline_complete.png) |
+| Dashboard | ![](screenshots/06_powerbi_dashboard.png) |
 
 ---
 
